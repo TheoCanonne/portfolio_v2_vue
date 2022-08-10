@@ -4,11 +4,11 @@
       <router-link to="/projects" class="link-illustration">
         <img class="illustration" src="../assets/illustrations/projects.svg" />
       </router-link>
-      <div class="title-typewritted">
-        <h2>Hi there,</h2>
-        <h2>I’m Theo Canonne!</h2>
-      </div>
-      <p>
+      <TypedTitle class="typed-title">
+        <p class="subtitle">Hi there,</p>
+        <p class="subtitle">I’m Theo Canonne!</p>
+      </TypedTitle>
+      <p class="description">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent
         tristique eu risus vitae facilisis. Nulla quis nisi in lectus tristique
         aliquet at nec sem.
@@ -47,91 +47,21 @@
 
 <script setup lang="ts">
 import ButtonNavigation from "../components/ButtonNavigation.vue";
+import TypedTitle from "../components/TypedTitle.vue";
 </script>
 
 <style scoped lang="scss">
-#home-page {
-  display: grid;
-  height: 100%;
-  width: 100%;
-  grid-template:
-    "projects experiences" 1fr
-    "projects about-me" 1fr / 1.5fr 1fr;
-}
-
-@media screen and (max-width: 1100px) {
-  #home-page {
-    grid-template:
-      "projects" auto
-      "experiences" auto
-      "about-me" auto / 1fr;
-
-    .category.projects {
-      .illustration {
-        padding-top: 3rem;
-        margin-bottom: 1rem;
-      }
-      min-height: 600px;
-    }
-    .category.half-page {
-      min-height: 300px;
-    }
-  }
-}
-
-.category {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 1rem;
-
-  .btn-navigation {
-    font-size: max(1.5em, 1.5vw);
-  }
-}
-.projects {
-  grid-area: projects;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 1rem;
-
-  h2 {
-    letter-spacing: 0.1em;
-    font-size: 2em;
-  }
-
-  p {
-    letter-spacing: 0.1em;
-    font-size: 1em;
-  }
-
-  .title-typewritted,
-  p {
-    margin: 0% 12%;
-    flex-shrink: 0;
-    font-size: 1.2em;
-  }
-
-  .btn-navigation {
-    align-self: flex-end;
-  }
+.subtitle {
+  letter-spacing: 0.1em;
+  font-size: 2em;
+  margin: 0;
 }
 .experiences {
-  grid-area: experiences;
   background-color: var(--darker-color);
 }
 
 .about-me {
-  grid-area: about-me;
   background-color: var(--lighter-color);
-}
-
-.half-page {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
 }
 
 .illustration {
@@ -143,46 +73,65 @@ import ButtonNavigation from "../components/ButtonNavigation.vue";
   max-height: 100%;
 }
 
+.category {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  gap: 0.5rem;
 
-.title-typewritted {
-  h2 {
-    position: relative;
-    width: max-content;
-    --typing-speed: 0.5s;
-
-    &::after {
-      content: "";
-      position: absolute;
-      right: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      background-color: var(--main-color);
-      border-left: 4px solid red;
-      border-color: transparent;
-    }
-
-    &:nth-child(1)::after {
-        --time-typing: calc(var(--typing-speed) * 3);
-        animation: typing var(--time-typing) steps(9, end) forwards, typingBorderBlink var(--typing-speed) step-end 4;
-    }
-    &:nth-child(2)::after {
-        animation: typing calc(var(--typing-speed) * 5) steps(17, end) forwards, typingBorderBlink var(--typing-speed ) step-end infinite;
-        animation-delay: calc(var(--typing-speed) * 4 + .2s);
-    }
+  .btn-navigation {
+    font-size: max(1.5em, 1.5vw);
+    align-self: flex-end;
   }
 }
 
-@keyframes typing {
-  from {
+.projects {
+  align-items: flex-start;
+
+  .description {
+    letter-spacing: 0.1em;
+    font-size: 1em;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  #home-page {
+    display: grid;
+    height: 100%;
     width: 100%;
+    grid-template:
+      "projects experiences" 1fr
+      "projects about-me" 1fr / 1.5fr 1fr;
   }
-  to {
-    width: 0;
+
+  .experiences {
+    grid-area: experiences;
+  }
+
+  .about-me {
+    grid-area: about-me;
+  }
+
+  .projects {
+    grid-area: projects;
+
+    .typed-title, .description {
+      margin: 0 12%;
+    }
+  }
+
+}
+
+@media screen and (max-width: 768px) {
+  #home-page {
+    font-size: 0.9em;
   }
 }
-@keyframes typingBorderBlink {
-  from, to { border-color: transparent }
-  50% { border-color: var(--font-color); }
+@media screen and (max-width: 425px) {
+  #home-page {
+    font-size: 0.7em;
+  }
 }
 </style>
