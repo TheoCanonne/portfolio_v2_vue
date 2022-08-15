@@ -1,6 +1,8 @@
 <template>
 <div id="header">
+      <router-link to="/" class="btn btn--transparent btn--flat">
     <h1>Web Developper</h1>
+    </router-link>
     <ul class="links">
         <li>My Projects</li>
         <li>My Experiences</li>

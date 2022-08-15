@@ -1,12 +1,15 @@
 .btn {
+  text-decoration: none;
+  cursor: pointer;
+  background-color: var(--main-color);
+  color: var(--font-color);
+
+  &.btn--transparent {
+    background-color: transparent;
+  }
+
+  &:not(.btn--flat) {
     font-size: 1.5em;
     padding: 1em;
-    text-decoration: none;
-    cursor: pointer;
-    background-color: var(--main-color);
-    color: var(--font-color);
-
-    &.btn--transparent {
-        background-color: transparent;
-    }
+  }
 }
